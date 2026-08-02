@@ -98,6 +98,8 @@ section{padding:40px 0}
 .pill{display:inline-flex;gap:6px;align-items:center;background:#EFE6CE;border:1px solid var(--line);
   border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:600;color:var(--pine)}
 .pill.bed{background:#E7EFE3}
+.maplink{background:#FBE9BE;border-color:var(--gold);color:var(--gold-deep);text-decoration:none;cursor:pointer}
+.maplink:hover{background:var(--gold);color:#3a2a05}
 
 /* ---------- grids ---------- */
 .grid{display:grid;gap:14px;margin-top:22px}
@@ -197,7 +199,6 @@ img,.leaflet-container{max-width:100%}
   <a href="#route">מסלול</a>
   <a href="#flights">טיסות</a>
   <a href="#hotels">מלונות</a>
-  <a href="#madrid">מדריד</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -235,13 +236,6 @@ img,.leaflet-container{max-width:100%}
   <div class="grid g3" id="hotels-list"></div>
 </div></section>
 
-<section id="madrid"><div class="wrap">
-  <div class="eyebrow">21–23 באוגוסט</div>
-  <h2 class="sec-title">מדריד</h2>
-  <p class="sec-lead">אחרי טיול הג׳יפים — שלושה ימים חופשיים בבירה. השיא: סיור באצטדיון ברנבאו.</p>
-  <div class="card stad" id="stadium"></div>
-</div></section>
-
 <footer><div class="wrap">
   MEDRAFT · Nature &amp; Adventure — טיול הג׳יפים המשפחתי לפירנאים
   <div class="sync" id="sync">טוען מגיליון Google…</div>
@@ -259,7 +253,7 @@ const CONFIG = {
   TABS: { itinerary: "מסלול", hotels: "מלונות" }              // fetched live, by tab name
 };
 
-const EMBEDDED_DATA = {"trip": {"title": "הרפתקה ברכס הפירנאים", "subtitle": "ספרד · טיול ג׳יפים משפחתי", "dates": "13–24 באוגוסט 2026", "operator": "MEDRAFT · Nature & Adventure", "occasion": "לכבוד יום ההולדת ה־70 של עליזה 🎂", "intro": "רכס הפירנאים הנפרש בין ספרד, צרפת ואנדורה — יערות עד, נהרות שוצפים ואגמים אלפיניים. שבעה ימי ג׳יפים עצמאיים דרך עיירות ציוריות, שווקים ססגוניים, רפטינג וקניונינג, ואז שלושה ימים חופשיים במדריד.", "earth": "https://earth.google.com/earth/d/1-PLCEMlI1-rvmUgjZqhyENeTu_WX8Dok?usp=sharing"}, "places": [["הגעה", "נמל התעופה מדריד–בראחס", 40.4983, -3.5676, "נחיתה 13/8"], ["הגעה", "מלון ibis Styles Valdebebas", 40.4783, -3.6033, "לינה 13/8"], ["יום 1", "העיר העתיקה איינסה", 42.4192, 0.1389, "14/8"], ["יום 1", "קניון האניסקלו", 42.495, 0.06, "14/8"], ["יום 1", "Hotel Peña Montañesa", 42.431, 0.14, "14/8 · לינה"], ["יום 2", "עמק בנסקה", 42.6053, 0.5233, "15/8"], ["יום 2", "מפל הדג — Saut deth Pish", 42.7769, 0.8324, "15/8"], ["יום 2", "ויאלה (Vielha)", 42.7016, 0.7967, "15/8 · לינה"], ["יום 3", "מונטגרי", 42.7669, 0.9942, "16/8 · הסיפור היהודי"], ["יום 3", "סורט · Pessets Hotel", 42.409, 1.1305, "16–18/8 · לינה"], ["יום 4", "רפטינג נוגווארה-פיירסה", 42.4126, 1.1289, "17/8"], ["יום 5", "שמורת אייגואסטורטס", 42.5847, 1.0086, "18/8 · אגמים ומפלים"], ["יום 6", "נקיק ואגם מונטרביי", 42.0558, 0.7073, "19/8"], ["יום 6", "סרגוסה · אל פילאר", 41.6564, -0.8779, "19/8 · לינה"], ["מדריד", "פלאסה מایור", 40.4155, -3.7074, "21/8"], ["מדריד", "מוזיאון הפראדו", 40.4138, -3.6921, "21/8"], ["מדריד", "פארק ריטירו", 40.4153, -3.6844, "21/8"], ["מדריד", "אצטדיון סנטיאגו ברנבאו", 40.4531, -3.6883, "22/8 · 16:30"]], "route_order": ["נמל התעופה מדריד–בראחס", "העיר העתיקה איינסה", "ויאלה (Vielha)", "סורט · Pessets Hotel", "שמורת אייגואסטורטס", "נקיק ואגם מונטרביי", "סרגוסה · אל פילאר", "אצטדיון סנטיאגו ברנבאו"], "travelers": [{"family": "החוגגת", "name": "עליזה", "role": "סבתא · חוגגת יום הולדת 70", "kids": false, "star": true}, {"family": "משפחת מויאל", "name": "נועה", "role": "בת", "kids": false}, {"family": "משפחת מויאל", "name": "נתי", "role": "בעל · בעל ההזמנה", "kids": false}, {"family": "משפחת מויאל", "name": "הלל", "role": "בן", "age": 15, "kids": true}, {"family": "משפחת מויאל", "name": "דן", "role": "בן", "age": 10, "kids": true}, {"family": "משפחת טל", "name": "טל", "role": "בת", "kids": false}, {"family": "משפחת טל", "name": "בן", "role": "בעל", "kids": false}, {"family": "משפחת טל", "name": "איתן", "role": "בן", "age": 10, "kids": true}, {"family": "משפחת טל", "name": "עוז", "role": "בן", "age": 7, "kids": true}, {"family": "משפחת גיל", "name": "גיל", "role": "בת", "kids": false}, {"family": "משפחת גיל", "name": "דור", "role": "בעל", "kids": false}, {"family": "משפחת גיל", "name": "רובי", "role": "בת", "age": 3, "kids": true}], "itinerary": [{"date": "13/8", "kind": "fly", "label": "הגעה", "title": "נחיתה במדריד", "area": "מדריד", "hotel": "ibis Styles Madrid Airport Valdebebas", "basis": "לינה", "acts": ["נחיתה בטיסת אל על LY397 בשעה 21:35", "לינה במלון ליד שדה התעופה", "קבלת הג׳יפים למחרת בבוקר"]}, {"date": "14/8", "kind": "jeep", "label": "יום 1", "title": "אגמים וסכרים, איינסה וקניון האניסקלו", "area": "איינסה · אסקלונה", "hotel": "Hotel Peña Montañesa", "basis": "א. בוקר", "acts": ["קבלת הג׳יפ ויציאה צפונה לרכס הפירנאים", "העיר העתיקה של איינסה", "נסיעה בקניון האניסקלו העצום", "הליכה רגלית למפלי המים השוצפים", "הכפרים הציוריים של חבל אראגון"]}, {"date": "15/8", "kind": "jeep", "label": "יום 2", "title": "מעבר הרים לויאלה ומפל הדג", "area": "ואל ד׳אראן · ויאלה", "hotel": "ויאלה — מלון כפרי (לעדכון)", "basis": "א. בוקר", "acts": ["דרך שטח למעבר ההרים קול דה סאון", "עמק בנסקה ועמק ואל ד׳אראן הקסום", "תצפית על פסגות הפירנאים הגבוהות", "מפל הדג השוצף", "דרך שטח על הגבול הצרפתי-ספרדי"]}, {"date": "16/8", "kind": "canyon", "label": "יום 3", "title": "מונטגרי והסיפור היהודי · קניונינג", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["הכפרים המיוחדים של עמק אראן", "דרכי שטח לכפר מונטגרי והסיפור היהודי המרגש", "נסיעת נוף לאורך הנהר בנופים אלפיניים", "גלישת קניונינג (סנפלינג בנחל זורם) עם מדריך מקצועי"]}, {"date": "17/8", "kind": "raft", "label": "יום 4", "title": "רפטינג בנהר הפיירסה, שמורת האגוואס טורטס", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["רפטינג חווייתי בנהר נוגווארה-פיירסה", "דרך השטח היפה ביותר בפירנאים", "טיול רגלי למפלי מים שוצפים"]}, {"date": "18/8", "kind": "hike", "label": "יום 5", "title": "האגוואס טורטס, בורדסים וכנסיית סנטה מגדלנה", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["טיול רגלי בין האגמים והמפלים של שמורת אייגואסטורטס", "בתי הרועים — בורדסים", "דרכי שטח לכיוון אנדורה וחציית פלגי מים", "כנסיית סנטה מגדלנה של “המבריחים”"]}, {"date": "19/8", "kind": "jeep", "label": "יום 6", "title": "רכס המידי-פירנאים, אגם מונטרביי, סרגוסה", "area": "סרגוסה", "hotel": "Hotel Oriente Zaragoza", "basis": "א. בוקר", "acts": ["דרכים מפותלות על רכס הפירנאים ה“נמוכים” עם תצפית מרהיבה", "נסיעת שטח לאגם והסכר של מונטרביי", "תצפית על נשרי הפירנאים", "המשך נסיעה לסרגוסה"]}, {"date": "20/8", "kind": "city", "label": "יום 7", "title": "סרגוסה, וסיום במדריד", "area": "סרגוסה → מדריד", "hotel": "—", "basis": "א. בוקר", "acts": ["סיור בעיר העתיקה של סרגוסה: הקתדרלות, החומות הרומיות והתיאטרון הרומי", "הסמטאות הציוריות של העיר", "נסיעה למדריד וסיום טיול הג׳יפים — משם עצמאיים"]}, {"date": "21/8", "kind": "city", "label": "מדריד", "title": "יום חופשי במדריד", "area": "מדריד", "hotel": "מדריד (לבחירתכם)", "basis": "—", "acts": ["העיר העתיקה ופלאסה מایור", "פארק ריטירו", "מוזיאון הפראדו והסביבה", "קניות וטפאס"]}, {"date": "22/8", "kind": "stadium", "label": "מדריד", "title": "סיור באצטדיון סנטיאגו ברנבאו", "area": "מדריד", "hotel": "מדריד (לבחירתכם)", "basis": "—", "acts": ["סיור מודרך באצטדיון ריאל מדריד — שעה 16:30", "כתובת: Av. Concha Espina 1", "6 כרטיסים: 3 מבוגר · 3 ילד", "חשוב להגיע בזמן — אין כניסה למאחרים"]}, {"date": "23/8", "kind": "fly", "label": "חזרה", "title": "יום אחרון וטיסה הביתה", "area": "מדריד → תל אביב", "hotel": "—", "basis": "—", "acts": ["יום אחרון חופשי במדריד", "טיסת אל על LY398 בשעה 22:50 ממדריד", "נחיתה בנתב“ג ב-24/8 בשעה 04:25"]}], "flights": [{"dir": "הלוך", "flight": "LY397", "from": "תל אביב · נתב“ג", "fromT": "טרמינל 3", "to": "מדריד · בראחס", "toT": "טרמינל 4S", "date": "13/8/2026", "dep": "17:15", "arr": "21:35", "dur": "5:20", "cls": "Economy Lite"}, {"dir": "חזור", "flight": "LY398", "from": "מדריד · בראחס", "fromT": "טרמינל 4S", "to": "תל אביב · נתב“ג", "toT": "טרמינל 3", "date": "23/8 → 24/8", "dep": "22:50", "arr": "04:25", "dur": "4:35", "cls": "Economy Lite"}], "flight_meta": {"airline": "אל על", "booking": "X7GZBH"}, "hotels": [{"date": "13/8", "hotel": "ibis Styles Madrid Airport Valdebebas", "area": "מדריד", "basis": "לינה"}, {"date": "14/8", "hotel": "Hotel Peña Montañesa", "area": "אסקלונה", "basis": "א. בוקר"}, {"date": "15/8", "hotel": "מלון כפרי בויאלה (לעדכון)", "area": "ויאלה", "basis": "א. בוקר"}, {"date": "16–18/8", "hotel": "Pessets Hotel Sort", "area": "סורט · עמק הפיירסה", "basis": "א. בוקר"}, {"date": "19/8", "hotel": "Hotel Oriente Zaragoza", "area": "סרגוסה", "basis": "א. בוקר"}, {"date": "20–23/8", "hotel": "מדריד — לבחירתכם", "area": "מדריד", "basis": "עצמאי"}], "bernabeu": {"title": "סיור מודרך באצטדיון סנטיאגו ברנבאו", "when": "שבת · 22 באוגוסט 2026 · 16:30", "address": "Av. Concha Espina 1, 28036 Madrid", "metro": "מטרו: Santiago Bernabéu (קו 10)", "tickets": [{"type": "מבוגר (+14)", "qty": 3, "price": "€60"}, {"type": "ילד (5–14)", "qty": 3, "price": "€54"}], "ref": "אישור: 103282856", "note": "חובה להגיע בשעה המדויקת — הגעה מוקדמת/מאוחרת אינה מבטיחה כניסה. אין שירות שמירת חפצים; הסיור כולל מדרגות רבות."}, "price": {"amount": "€1,370", "per": "לאדם בחדר זוגי · מבוסס על 12 מטיילים ב-3 ג׳יפים", "includes": ["ג׳יפ מסוג KGM Rexton PRO או דומה מאותה קטגוריה", "לינות על פי התיאור", "כלכלה על בסיס ארוחת בוקר", "רפטינג", "קניונינג (סנפלינג בנחל זורם) בליווי מדריך מקצועי", "תוספת קיץ", "הנחת לקוח חוזר", "מפגש מקדים עם מדריך שטח ישראלי", "ערכת מדריך וירטואלי עם תוכנת ניווט שטח ייעודית", "צוות MEDRAFT זמין במרחק שיחת טלפון לכל שאלה"], "excludes": ["טיסות", "ביטוח נסיעות ומטען אישי המתאים לאופי הפעילות", "הסדר החזר השתתפות עצמית במקרה של נזק לג׳יפ", "הוצאות אישיות (שתייה קלה, מזכרות וכד׳)", "פעילויות ואטרקציות שאינן ב“מחיר כולל”"], "notes": ["הג׳יפים מושכרים מחברה מקומית ומבוטחים בביטוח המקסימלי האפשרי; כל פגיעה ברכב תגרור השתתפות עצמית, וכרטיס אשראי יינתן כפיקדון.", "המסלול עשוי להשתנות בשל מזג אוויר, הוראות רשויות, תקלות טכניות או החלטת המדריך בשטח.", "ייתכנו שינויים בסדר הפעילויות שלא יפגעו באופי הטיול.", "תוקף ההצעה 7 ימים מהגשתה."]}};
+const EMBEDDED_DATA = {"trip": {"title": "הרפתקה ברכס הפירנאים", "subtitle": "ספרד · טיול ג׳יפים משפחתי", "dates": "13–24 באוגוסט 2026", "operator": "MEDRAFT · Nature & Adventure", "occasion": "לכבוד יום ההולדת ה־70 של עליזה 🎂", "intro": "רכס הפירנאים הנפרש בין ספרד, צרפת ואנדורה — יערות עד, נהרות שוצפים ואגמים אלפיניים. שבעה ימי ג׳יפים עצמאיים דרך עיירות ציוריות, שווקים ססגוניים, רפטינג וקניונינג, ואז שלושה ימים חופשיים במדריד.", "earth": "https://earth.google.com/earth/d/1-PLCEMlI1-rvmUgjZqhyENeTu_WX8Dok?usp=sharing"}, "places": [["הגעה", "נמל התעופה מדריד–בראחס", 40.4983, -3.5676, "נחיתה 13/8"], ["הגעה", "מלון ibis Styles Valdebebas", 40.4783, -3.6033, "לינה 13/8"], ["יום 1", "העיר העתיקה איינסה", 42.4192, 0.1389, "14/8"], ["יום 1", "קניון האניסקלו", 42.495, 0.06, "14/8"], ["יום 1", "Hotel Peña Montañesa", 42.431, 0.14, "14/8 · לינה"], ["יום 2", "עמק בנסקה", 42.6053, 0.5233, "15/8"], ["יום 2", "מפל הדג — Saut deth Pish", 42.7769, 0.8324, "15/8"], ["יום 2", "ויאלה (Vielha)", 42.7016, 0.7967, "15/8 · לינה"], ["יום 3", "מונטגרי", 42.7669, 0.9942, "16/8 · הסיפור היהודי"], ["יום 3", "סורט · Pessets Hotel", 42.409, 1.1305, "16–18/8 · לינה"], ["יום 4", "רפטינג נוגווארה-פיירסה", 42.4126, 1.1289, "17/8"], ["יום 5", "שמורת אייגואסטורטס", 42.5847, 1.0086, "18/8 · אגמים ומפלים"], ["יום 6", "נקיק ואגם מונטרביי", 42.0558, 0.7073, "19/8"], ["יום 6", "סרגוסה · אל פילאר", 41.6564, -0.8779, "19/8 · לינה"], ["מדריד", "פלאסה מایור", 40.4155, -3.7074, "21/8"], ["מדריד", "מוזיאון הפראדו", 40.4138, -3.6921, "21/8"], ["מדריד", "פארק ריטירו", 40.4153, -3.6844, "21/8"], ["מדריד", "אצטדיון סנטיאגו ברנבאו", 40.4531, -3.6883, "22/8 · 16:30"]], "route_order": ["נמל התעופה מדריד–בראחס", "העיר העתיקה איינסה", "ויאלה (Vielha)", "סורט · Pessets Hotel", "שמורת אייגואסטורטס", "נקיק ואגם מונטרביי", "סרגוסה · אל פילאר", "אצטדיון סנטיאגו ברנבאו"], "travelers": [{"family": "החוגגת", "name": "עליזה", "role": "סבתא · חוגגת יום הולדת 70", "kids": false, "star": true}, {"family": "משפחת מויאל", "name": "נועה", "role": "בת", "kids": false}, {"family": "משפחת מויאל", "name": "נתי", "role": "בעל · בעל ההזמנה", "kids": false}, {"family": "משפחת מויאל", "name": "הלל", "role": "בן", "age": 15, "kids": true}, {"family": "משפחת מויאל", "name": "דן", "role": "בן", "age": 10, "kids": true}, {"family": "משפחת טל", "name": "טל", "role": "בת", "kids": false}, {"family": "משפחת טל", "name": "בן", "role": "בעל", "kids": false}, {"family": "משפחת טל", "name": "איתן", "role": "בן", "age": 10, "kids": true}, {"family": "משפחת טל", "name": "עוז", "role": "בן", "age": 7, "kids": true}, {"family": "משפחת גיל", "name": "גיל", "role": "בת", "kids": false}, {"family": "משפחת גיל", "name": "דור", "role": "בעל", "kids": false}, {"family": "משפחת גיל", "name": "רובי", "role": "בת", "age": 3, "kids": true}], "itinerary": [{"date": "13/8", "kind": "fly", "label": "הגעה", "title": "נחיתה במדריד", "area": "מדריד", "hotel": "ibis Styles Madrid Airport Valdebebas", "basis": "לינה", "acts": ["נחיתה בטיסת אל על LY397 בשעה 21:35", "לינה במלון ליד שדה התעופה", "קבלת הג׳יפים למחרת בבוקר"], "map": "ibis Styles Madrid Airport Valdebebas"}, {"date": "14/8", "kind": "jeep", "label": "יום 1", "title": "אגמים וסכרים, איינסה וקניון האניסקלו", "area": "איינסה · אסקלונה", "hotel": "Hotel Peña Montañesa", "basis": "א. בוקר", "acts": ["קבלת הג׳יפ ויציאה צפונה לרכס הפירנאים", "העיר העתיקה של איינסה", "נסיעה בקניון האניסקלו העצום", "הליכה רגלית למפלי המים השוצפים", "הכפרים הציוריים של חבל אראגון"], "map": "Aínsa old town Huesca"}, {"date": "15/8", "kind": "jeep", "label": "יום 2", "title": "מעבר הרים לויאלה ומפל הדג", "area": "ואל ד׳אראן · ויאלה", "hotel": "ויאלה — מלון כפרי (לעדכון)", "basis": "א. בוקר", "acts": ["דרך שטח למעבר ההרים קול דה סאון", "עמק בנסקה ועמק ואל ד׳אראן הקסום", "תצפית על פסגות הפירנאים הגבוהות", "מפל הדג השוצף", "דרך שטח על הגבול הצרפתי-ספרדי"], "map": "Saut deth Pish Val d'Aran"}, {"date": "16/8", "kind": "canyon", "label": "יום 3", "title": "מונטגרי והסיפור היהודי · קניונינג", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["הכפרים המיוחדים של עמק אראן", "דרכי שטח לכפר מונטגרי והסיפור היהודי המרגש", "נסיעת נוף לאורך הנהר בנופים אלפיניים", "גלישת קניונינג (סנפלינג בנחל זורם) עם מדריך מקצועי"], "map": "Montgarri Val d'Aran"}, {"date": "17/8", "kind": "raft", "label": "יום 4", "title": "רפטינג בנהר הפיירסה, שמורת האגוואס טורטס", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["רפטינג חווייתי בנהר נוגווארה-פיירסה", "דרך השטח היפה ביותר בפירנאים", "טיול רגלי למפלי מים שוצפים"], "map": "Noguera Pallaresa rafting Sort"}, {"date": "18/8", "kind": "hike", "label": "יום 5", "title": "האגוואס טורטס, בורדסים וכנסיית סנטה מגדלנה", "area": "סורט · עמק הפיירסה", "hotel": "Pessets Hotel Sort", "basis": "א. בוקר", "acts": ["טיול רגלי בין האגמים והמפלים של שמורת אייגואסטורטס", "בתי הרועים — בורדסים", "דרכי שטח לכיוון אנדורה וחציית פלגי מים", "כנסיית סנטה מגדלנה של “המבריחים”"], "map": "Aigüestortes i Estany de Sant Maurici National Park"}, {"date": "19/8", "kind": "jeep", "label": "יום 6", "title": "רכס המידי-פירנאים, אגם מונטרביי, סרגוסה", "area": "סרגוסה", "hotel": "Hotel Oriente Zaragoza", "basis": "א. בוקר", "acts": ["דרכים מפותלות על רכס הפירנאים ה“נמוכים” עם תצפית מרהיבה", "נסיעת שטח לאגם והסכר של מונטרביי", "תצפית על נשרי הפירנאים", "המשך נסיעה לסרגוסה"], "map": "Congost de Mont-rebei"}, {"date": "20/8", "kind": "city", "label": "יום 7", "title": "סרגוסה, וסיום במדריד", "area": "סרגוסה → מדריד", "hotel": "—", "basis": "א. בוקר", "acts": ["סיור בעיר העתיקה של סרגוסה: הקתדרלות, החומות הרומיות והתיאטרון הרומי", "הסמטאות הציוריות של העיר", "נסיעה למדריד וסיום טיול הג׳יפים — משם עצמאיים"], "map": "Basílica del Pilar Zaragoza"}, {"date": "21/8", "kind": "city", "label": "מדריד", "title": "יום חופשי במדריד", "area": "מדריד", "hotel": "מדריד (לבחירתכם)", "basis": "—", "acts": ["העיר העתיקה ופלאסה מایור", "פארק ריטירו", "מוזיאון הפראדו והסביבה", "קניות וטפאס"], "map": "Plaza Mayor Madrid"}, {"date": "22/8", "kind": "stadium", "label": "מדריד", "title": "סיור באצטדיון סנטיאגו ברנבאו", "area": "מדריד", "hotel": "מדריד (לבחירתכם)", "basis": "—", "acts": ["סיור מודרך באצטדיון ריאל מדריד — שעה 16:30", "כתובת: Av. Concha Espina 1", "6 כרטיסים: 3 מבוגר · 3 ילד", "חשוב להגיע בזמן — אין כניסה למאחרים"], "map": "Santiago Bernabéu Stadium"}, {"date": "23/8", "kind": "fly", "label": "חזרה", "title": "יום אחרון וטיסה הביתה", "area": "מדריד → תל אביב", "hotel": "—", "basis": "—", "acts": ["יום אחרון חופשי במדריד", "טיסת אל על LY398 בשעה 22:50 ממדריד", "נחיתה בנתב“ג ב-24/8 בשעה 04:25"], "map": "Adolfo Suárez Madrid Barajas Airport"}], "flights": [{"dir": "הלוך", "flight": "LY397", "from": "תל אביב · נתב“ג", "fromT": "טרמינל 3", "to": "מדריד · בראחס", "toT": "טרמינל 4S", "date": "13/8/2026", "dep": "17:15", "arr": "21:35", "dur": "5:20", "cls": "Economy Lite"}, {"dir": "חזור", "flight": "LY398", "from": "מדריד · בראחס", "fromT": "טרמינל 4S", "to": "תל אביב · נתב“ג", "toT": "טרמינל 3", "date": "23/8 → 24/8", "dep": "22:50", "arr": "04:25", "dur": "4:35", "cls": "Economy Lite"}], "flight_meta": {"airline": "אל על", "booking": "X7GZBH"}, "hotels": [{"date": "13/8", "hotel": "ibis Styles Madrid Airport Valdebebas", "area": "מדריד", "basis": "לינה"}, {"date": "14/8", "hotel": "Hotel Peña Montañesa", "area": "אסקלונה", "basis": "א. בוקר"}, {"date": "15/8", "hotel": "מלון כפרי בויאלה (לעדכון)", "area": "ויאלה", "basis": "א. בוקר"}, {"date": "16–18/8", "hotel": "Pessets Hotel Sort", "area": "סורט · עמק הפיירסה", "basis": "א. בוקר"}, {"date": "19/8", "hotel": "Hotel Oriente Zaragoza", "area": "סרגוסה", "basis": "א. בוקר"}, {"date": "20–23/8", "hotel": "מדריד — לבחירתכם", "area": "מדריד", "basis": "עצמאי"}], "bernabeu": {"title": "סיור מודרך באצטדיון סנטיאגו ברנבאו", "when": "שבת · 22 באוגוסט 2026 · 16:30", "address": "Av. Concha Espina 1, 28036 Madrid", "metro": "מטרו: Santiago Bernabéu (קו 10)", "tickets": [{"type": "מבוגר (+14)", "qty": 3, "price": "€60"}, {"type": "ילד (5–14)", "qty": 3, "price": "€54"}], "ref": "אישור: 103282856", "note": "חובה להגיע בשעה המדויקת — הגעה מוקדמת/מאוחרת אינה מבטיחה כניסה. אין שירות שמירת חפצים; הסיור כולל מדרגות רבות."}, "price": {"amount": "€1,370", "per": "לאדם בחדר זוגי · מבוסס על 12 מטיילים ב-3 ג׳יפים", "includes": ["ג׳יפ מסוג KGM Rexton PRO או דומה מאותה קטגוריה", "לינות על פי התיאור", "כלכלה על בסיס ארוחת בוקר", "רפטינג", "קניונינג (סנפלינג בנחל זורם) בליווי מדריך מקצועי", "תוספת קיץ", "הנחת לקוח חוזר", "מפגש מקדים עם מדריך שטח ישראלי", "ערכת מדריך וירטואלי עם תוכנת ניווט שטח ייעודית", "צוות MEDRAFT זמין במרחק שיחת טלפון לכל שאלה"], "excludes": ["טיסות", "ביטוח נסיעות ומטען אישי המתאים לאופי הפעילות", "הסדר החזר השתתפות עצמית במקרה של נזק לג׳יפ", "הוצאות אישיות (שתייה קלה, מזכרות וכד׳)", "פעילויות ואטרקציות שאינן ב“מחיר כולל”"], "notes": ["הג׳יפים מושכרים מחברה מקומית ומבוטחים בביטוח המקסימלי האפשרי; כל פגיעה ברכב תגרור השתתפות עצמית, וכרטיס אשראי יינתן כפיקדון.", "המסלול עשוי להשתנות בשל מזג אוויר, הוראות רשויות, תקלות טכניות או החלטת המדריך בשטח.", "ייתכנו שינויים בסדר הפעילויות שלא יפגעו באופי הטיול.", "תוקף ההצעה 7 ימים מהגשתה."]}};
 
 /* ---------- CSV helpers (per skill) ---------- */
 function parseCSV(text){
@@ -275,36 +269,56 @@ function parseCSV(text){
 function toObjects(rows){const h=rows[0]||[];return rows.slice(1)
   .filter(r=>r.some(c=>c.trim()!==''))
   .map(r=>{const o={};h.forEach((k,i)=>o[k.trim()]=(r[i]||'').trim());return o;});}
+/* Find the real header row (sheets may have a title row + blank rows first),
+   then build objects from the rows after it. */
+function toObjectsSmart(rows, keys){
+  let hi=0, best=0;
+  for(let i=0;i<Math.min(rows.length,12);i++){
+    const hit=keys.filter(k=>rows[i].some(c=>(c||'').trim()===k)).length;
+    if(hit>best){best=hit;hi=i;}
+  }
+  const h=(rows[hi]||[]).map(c=>(c||'').trim());
+  return rows.slice(hi+1)
+    .filter(r=>r.some(c=>(c||'').trim()!==''))
+    .map(r=>{const o={};h.forEach((k,i)=>o[k]=(r[i]||'').trim());return o;})
+    .filter(o=>Object.values(o).some(v=>v!==''));
+}
 function getVal(o,k){if(o[k]!==undefined)return o[k];const n=s=>s.replace(/[:\s]/g,'');
   const e=Object.keys(o).find(x=>n(x)===n(k));if(e)return o[e];
   const p=Object.keys(o).find(x=>x.includes(k));return p?o[p]:'';}
 function fetchTimeout(url,ms){const c=new AbortController();const t=setTimeout(()=>c.abort(),ms);
   return fetch(url,{signal:c.signal}).finally(()=>clearTimeout(t));}
-/* Fetch one tab BY NAME via the gviz CSV endpoint (needs no gid). */
+/* Fetch one tab BY NAME via the gviz CSV endpoint (needs no gid); return raw rows. */
 async function fetchTab(id,name){
   const enc=encodeURIComponent(name);
   const urls=[`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${enc}`,
               `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&headers=1&sheet=${enc}`];
   let err;for(const u of urls){try{const r=await fetchTimeout(u,12000);
-    if(!r.ok)throw 0;const t=await r.text();if(!t.trim())throw 0;return toObjects(parseCSV(t));}catch(e){err=e;}}
+    if(!r.ok)throw 0;const t=await r.text();if(!t.trim())throw 0;return parseCSV(t);}catch(e){err=e;}}
   throw err;
 }
 /* Map live rows (Hebrew headers) back into the DATA shape; fall back to embedded on failure. */
 async function loadLive(){
   const {SHEET_ID,TABS}=CONFIG; if(!SHEET_ID) return null;
   const D=JSON.parse(JSON.stringify(EMBEDDED_DATA));
-  const kindByDate={}; EMBEDDED_DATA.itinerary.forEach(d=>kindByDate[d.date.trim()]=d.kind);
+  const kindByDate={},mapByDate={};
+  EMBEDDED_DATA.itinerary.forEach(d=>{kindByDate[d.date.trim()]=d.kind;mapByDate[d.date.trim()]=d.map||'';});
   const guessKind=t=>/רפטינג/.test(t)?'raft':/קניונינג|סנפלינג/.test(t)?'canyon':
     /טיסה|נחיתה|חזרה|הביתה/.test(t)?'fly':/ברנבאו|אצטדיון/.test(t)?'stadium':
     /טיול רגלי|הליכה|שמורה/.test(t)?'hike':/סיור|עיר|מדריד|סרגוסה/.test(t)?'city':'jeep';
   try{
-    const rs=await fetchTab(SHEET_ID,TABS.itinerary);
-    D.itinerary=rs.map(r=>{const date=getVal(r,'תאריך').trim(),title=getVal(r,'כותרת');
+    const irows=await fetchTab(SHEET_ID,TABS.itinerary);
+    const rs=toObjectsSmart(irows,['תאריך','כותרת','אזור','מלון','פעילויות']);
+    const itin=rs.map(r=>{const date=getVal(r,'תאריך').trim(),title=getVal(r,'כותרת');
       return {date,label:getVal(r,'יום'),title,area:getVal(r,'אזור'),hotel:getVal(r,'מלון'),
-        basis:getVal(r,'בסיס'),kind:kindByDate[date]||guessKind(title),
+        basis:getVal(r,'בסיס'),kind:kindByDate[date]||guessKind(title),map:mapByDate[date]||'',
         acts:getVal(r,'פעילויות').split('•').map(s=>s.trim()).filter(Boolean)};});
-    const hs=await fetchTab(SHEET_ID,TABS.hotels);
-    D.hotels=hs.map(r=>({date:getVal(r,'תאריך'),hotel:getVal(r,'מלון'),area:getVal(r,'אזור'),basis:getVal(r,'בסיס')}));
+    // guard: only accept live itinerary if it actually parsed titles
+    if(itin.filter(d=>d.title).length>=3) D.itinerary=itin;
+    const hrows=await fetchTab(SHEET_ID,TABS.hotels);
+    const hs=toObjectsSmart(hrows,['תאריך','מלון','אזור','בסיס']);
+    const hotels=hs.map(r=>({date:getVal(r,'תאריך'),hotel:getVal(r,'מלון'),area:getVal(r,'אזור'),basis:getVal(r,'בסיס')}));
+    if(hotels.filter(h=>h.hotel).length>=2) D.hotels=hotels;
     document.getElementById('sync').textContent='מסונכרן מגיליון Google · '+new Date().toLocaleString('he-IL');
     return D;
   }catch(e){document.getElementById('sync').textContent='מוצגים נתונים מוטמעים (הגיליון לא נטען כרגע)';return null;}
@@ -341,6 +355,7 @@ function render(D){
             ${d.hotel&&d.hotel!=='—'?`<span class="pill bed">🛏 ${esc(d.hotel)}</span>`:''}
             ${d.basis&&d.basis!=='—'?`<span class="pill">🍳 ${esc(d.basis)}</span>`:''}
             <span class="pill">📍 ${esc(d.label)}</span>
+            ${d.map?`<a class="pill maplink" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.map)}" target="_blank" rel="noopener">🗺️ פתח במפות</a>`:''}
           </div>
         </div>
       </div>
@@ -368,15 +383,6 @@ function render(D){
       <div style="font-weight:800;color:var(--pine);font-family:'Frank Ruhl Libre',serif;font-size:1.1rem">${esc(h.hotel)}</div>
       <div style="color:var(--ink-soft);font-size:.85rem;font-weight:600;margin-top:2px">${esc(h.area)} · ${esc(h.basis)}</div>
     </div>`).join('');
-
-  // stadium
-  const s=D.bernabeu;
-  $('#stadium').innerHTML=`
-    <h3>${esc(s.title)}</h3>
-    <div class="when">${esc(s.when)}</div>
-    <div class="info">📍 ${esc(s.address)}<br>🚇 ${esc(s.metro)} · ${esc(s.ref)}</div>
-    <div class="tix">${s.tickets.map(x=>`<div class="t"><div class="q">${x.qty}×</div><div class="l">${esc(x.type)}<br>${esc(x.price)}</div></div>`).join('')}</div>
-    <div class="note">${esc(s.note)}</div>`;
 
   if(t.earth){$('#earthbtn').href=t.earth;} else {$('#earthbtn').style.display='none';}
   initMap(D);
